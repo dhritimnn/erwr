@@ -36,7 +36,7 @@ async function searchResultInit() {
   let allProducts = [];
 
   try {
-    const res = await fetch('/database.json');
+    const res = await fetch('./database.json');
     const data = await res.json();
     const reversed = [...data].reverse();
     if (!query.trim()) {
