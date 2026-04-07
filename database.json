@@ -1,0 +1,49 @@
+[
+  
+  
+  {
+    "name": "Masrise Cotton",
+    "id": 1,
+    "url": "dataimg/01.webp",
+    "url2": "dataimg/01b.webp",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+  
+  {
+    "name": "Masrise Cotton",
+    "id": 2,
+    "url": "dataimg/02.webp",
+    "url2": "dataimg/02b.webp",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+  
+  {
+    "name": "Masrise Cotton",
+    "id": 3,
+    "url": "dataimg/03.webp",
+    "url2": "dataimg/03b.webp",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+  
+  {
+    "name": "Masrise Cotton",
+    "id": 4,
+    "url": "dataimg/04.webp",
+    "url2": "dataimg/04b.webp",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+  
+  {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "dataimg/05.webp",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  }
+  
+  
+]

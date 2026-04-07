@@ -1,0 +1,108 @@
+<div id="navbar">
+  <style>
+    nav {
+      z-index: 1000;
+      background: #FF8A4D;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.75rem;
+      position: sticky;
+    }
+    
+    .navdrop {
+      z-index: 600;
+      background: linear-gradient( #FFE9E8 50%, #FFD9D8);
+      color: darkslategrey;
+      display: flex;
+      justify-content: space-evenly;
+      padding: 2rem 1rem;
+      position: fixed;
+      inset: auto 0 auto 0;
+      transition: transform .35s ease-out;
+      transform: translateY(-105%);
+    }
+    
+    .navdrop>div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .navdrop>div>* {
+      text-decoration: none;
+      color: darkslategrey;
+      padding-bottom: .3rem;
+      padding-top: .3rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .ct > a{
+      color: orangered;
+    }
+    
+    .drop {
+      transform: translateY(0);
+    }
+    
+    line {
+      stroke: white;
+      stroke-width: 4;
+      stroke-linecap: round;
+      transform-origin: center;
+      transition: all 0.35s ease;
+    }
+    
+    .active .top {
+      opacity: 0;
+    }
+    
+    .active .bottom {
+      opacity: 0;
+    }
+    
+    .active .middle1 {
+      transform: rotate(33deg);
+    }
+    
+    .active .middle2 {
+      transform: rotate(-33deg);
+      
+    }
+  </style>
+  
+  <nav>
+    <h2>Gamkharu</h2>
+    <button onclick="navdrop.classList.toggle('drop'); menuIcon.classList.toggle('active')" style="background: none; border: none; outline: none;">
+    
+      <svg id="menuIcon" width="40" height="30" viewBox="0 0 40 40">
+        <g stroke="black" stroke-width="4" stroke-linecap="round">
+          <line class="top" x1="2" y1="10" x2="38" y2="10" />
+          <line class="middle1" x1="2" y1="20" x2="38" y2="20" />
+          <line class="middle2" x1="2" y1="20" x2="38" y2="20" />
+          <line class="bottom" x1="2" y1="30" x2="38" y2="30" />
+        </g>
+      </svg>
+      
+    </button>
+  </nav>
+  
+  <section id="navdrop" class="navdrop">
+    <div>
+      <a href="">Home</a>
+      <a href="">About</a>
+      <a href="">Contact Us</a>
+      <a href="/search.html">Search</a>
+    </div>
+    <hr>
+    <div class="ct">
+      <a href="">Clothing</a>
+      <a href="">Jewelry</a>
+      <a href="">Boutique</a>
+      
+    </div>
+  </section>
+</div>

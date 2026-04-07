@@ -1,0 +1,71 @@
+<div id="catagoryexp">
+  <style>
+    #catagorysec {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .eleh {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 1.2rem;
+      color: #FF5603;
+    }
+    
+    .eleh span {
+      height: 5px;
+      width: 100px;
+      background: #B99F8F70;
+    }
+    
+    #catbox {
+      padding: 2.5rem;
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      padding-top: 0;
+    }
+    
+    .catchild {
+      background: white;
+      width: 100%;
+    }
+    
+    .catchild img {
+      width: 100%;
+    }
+    
+    .catchildlast3 {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 50%;
+    }
+    
+    .catchild>div {
+      text-align: center;
+      padding: .5rem 0 1rem 0;
+    }
+  </style>
+  <div id="catagorysec">
+    <div class="eleh">
+      <h2>Explore Catagories</h2>
+      <span></span>
+    </div>
+    <div id="catbox">
+      <div id="clothing" class="catchild"><img src="./rootimg/01.webp" alt="">
+        <div>Clothings</div>
+      </div>
+      <div id="jewelry" class="catchild"><img src="./rootimg/01.webp" alt="">
+        <div>Jewelry</div>
+      </div>
+      <div id="boutique" class="catchild catchildlast3"><img src="./rootimg/01.webp" alt="">
+        <div>Boutique</div>
+      </div>
+    </div>
+    
+  </div>
+</div>
