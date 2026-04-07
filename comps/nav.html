@@ -2,7 +2,7 @@
   <style>
     nav {
       z-index: 1000;
-      background: #FF8A4D;
+      background: #FF5400;
       color: white;
       display: flex;
       justify-content: space-between;
@@ -28,7 +28,12 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+    }
+    .navdrop>div:first-child {
+      align-items: flex-end;
+    }
+    .navdrop>div:nth-child(2) {
+      align-items: flex-start;
     }
     
     .navdrop>div>* {
@@ -53,7 +58,7 @@
       stroke-width: 4;
       stroke-linecap: round;
       transform-origin: center;
-      transition: all 0.35s ease;
+      transition: all 0.25s ease;
     }
     
     .active .top {

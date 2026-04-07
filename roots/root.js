@@ -66,7 +66,7 @@ async function searchjsfunc() {
     }
 
     function navigate(query) {
-      window.location.href = `search.html?search=${encodeURIComponent(query)}`;
+      window.location.href = `search.html?q=${encodeURIComponent(query)}`;
     }
 
     const input = document.getElementById('searchinput');
@@ -75,7 +75,7 @@ async function searchjsfunc() {
 
     function renderSuggestions(query) {
       bar.innerHTML = getSuggestions(query).map(r => `
-        <a href="search.html?search=${encodeURIComponent(r.name)}">
+        <a href="search.html?q=${encodeURIComponent(r.name)}">
           <p>${r.name}</p>${arrowSVG}
         </a>`).join('');
     }

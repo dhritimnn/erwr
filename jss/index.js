@@ -5,6 +5,7 @@ async function load() {
   await searchjsfunc();
   await addcomp('header-placeholder', './comps/header.html');
   await addcomp('catagory-placeholder', './comps/catagory.html');
+  await addcomp('footer-placeholder', './comps/footer.html');
 
 }
 
