@@ -132,14 +132,23 @@ async function searchResultInit() {
     });
     
     Promise.all(imagePromises).then(() => {
-      cards.forEach(c => grid.appendChild(c));
-      loaded += batch.length;
-      isLoading = false; // unlock
-      if (loaded >= allProducts.length) {
-        loader.style.display = 'none';
-        observer.disconnect();
-      }
-    });
+  cards.forEach(c => grid.appendChild(c));
+  loaded += batch.length;
+  isLoading = false;
+  
+  if (loaded >= allProducts.length) {
+    loader.style.display = 'none';
+    observer.disconnect();
+  }
+  
+  // Preload next batch silently
+  allProducts.slice(loaded, loaded + BATCH).forEach(p => {
+    if (p.url) {
+      const img = new Image();
+      img.src = p.url;
+    }
+  });
+});
   }
   
   const observer = new IntersectionObserver(entries => {
