@@ -4,7 +4,7 @@
   {
     "name": "Masrise Cotton",
     "id": 1,
-    "url": "dataimg/01.webp",
+    "url": "https://picsum.photos/300/200?random=1",
     "url2": "dataimg/01b.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
@@ -13,7 +13,7 @@
   {
     "name": "Masrise Cotton",
     "id": 2,
-    "url": "dataimg/02.webp",
+    "url": "https://picsum.photos/300/200?random=2",
     "url2": "dataimg/02b.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
@@ -22,7 +22,7 @@
   {
     "name": "Masrise Cotton",
     "id": 3,
-    "url": "dataimg/03.webp",
+    "url": "https://picsum.photos/300/200?random=3",
     "url2": "dataimg/03b.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
@@ -31,7 +31,7 @@
   {
     "name": "Masrise Cotton",
     "id": 4,
-    "url": "dataimg/04.webp",
+    "url": "https://picsum.photos/300/200?random=5",
     "url2": "dataimg/04b.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
@@ -40,7 +40,49 @@
   {
     "name": "Masrise Cotton",
     "id": 5,
-    "url": "dataimg/05.webp",
+    "url": "https://picsum.photos/300/200?random=6",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+    {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "https://picsum.photos/300/200?random=7",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+    {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "https://picsum.photos/300/200?random=8",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+    {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "https://picsum.photos/300/200?random=9",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+    {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "https://picsum.photos/300/200?random=10",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+    {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "https://picsum.photos/300/200?random=11",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+    {
+    "name": "Masrise Cotton",
+    "id": 5,
+    "url": "https://picsum.photos/300/200?random=12",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   }
