@@ -1,0 +1,529 @@
+<div id="productcomp-root">
+  <style>
+    #productcomp-root {
+      font-family: inherit;
+      color: darkslategrey;
+    }
+
+    /* ── IMAGE SLIDER ── */
+    #pc-slider-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #f0ebe8;
+      aspect-ratio: 3/4;
+    }
+
+    #pc-slider {
+      display: flex;
+      height: 100%;
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+
+    .pc-slide {
+      min-width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .pc-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* indicators */
+    #pc-dots {
+      position: absolute;
+      bottom: .75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .4rem;
+      z-index: 10;
+    }
+
+    .pc-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+      transition: background .2s, transform .2s;
+    }
+
+    .pc-dot.active {
+      background: white;
+      transform: scale(1.3);
+    }
+
+    /* ── LIGHTBOX ── */
+    #pc-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 9999;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    #pc-lightbox.open { display: flex; align-items: center; justify-content: center; }
+
+    #pc-lb-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transform-origin: center center;
+      transition: transform .1s linear;
+      will-change: transform;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #pc-lb-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,.15);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    /* ── PRODUCT INFO ── */
+    #pc-info {
+      padding: 1.25rem 1.1rem .5rem;
+    }
+
+    #pc-featured-tag {
+      display: inline-block;
+      background: #FF5400;
+      color: white;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 2rem;
+      margin-bottom: .6rem;
+    }
+
+    #pc-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 .3rem;
+      line-height: 1.2;
+    }
+
+    #pc-cat {
+      font-size: .82rem;
+      color: #aaa;
+      margin-bottom: .75rem;
+      text-transform: capitalize;
+    }
+
+    #pc-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #FF5400;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── BUTTONS ── */
+    #pc-btns {
+      padding: 0 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+
+    .pc-btn {
+      width: 100%;
+      padding: .85rem;
+      border-radius: .6rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      transition: opacity .15s;
+    }
+
+    .pc-btn:active { opacity: .8; }
+
+    #pc-cart-btn {
+      background: #FF5400;
+      color: white;
+    }
+
+    #pc-cart-btn.added {
+      background: #2e7d32;
+    }
+
+    #pc-wa-btn {
+      background: #25D366;
+      color: white;
+    }
+
+    /* ── SUGGESTIONS ── */
+    #pc-suggestions {
+      padding: 0 1.1rem 2rem;
+    }
+
+    #pc-suggestions h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .85rem;
+      color: darkslategrey;
+    }
+
+    #pc-sug-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .gk-card {
+      background: white;
+      border: 1px solid #f0e8e8;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .gk-card-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #f5f0ee;
+      overflow: hidden;
+    }
+
+    .gk-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gk-wish {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+      background: rgba(255,255,255,.85);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      backdrop-filter: blur(4px);
+      transition: transform .2s;
+    }
+
+    .gk-wish:active { transform: scale(1.25); }
+
+    .gk-wish.wished svg path { fill: #FF5400; stroke: #FF5400; }
+
+    .gk-card-info {
+      padding: .6rem .7rem .8rem;
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+    }
+
+    .gk-card-name {
+      font-size: .85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .gk-card-price {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #FF5400;
+    }
+  </style>
+
+  <!-- SLIDER -->
+  <div id="pc-slider-wrap">
+    <div id="pc-slider"></div>
+    <div id="pc-dots"></div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="pc-lightbox">
+    <button id="pc-lb-close">✕</button>
+    <img id="pc-lb-img" src="" alt="">
+  </div>
+
+  <!-- INFO -->
+  <div id="pc-info">
+    <div id="pc-featured-tag" style="display:none">Featured</div>
+    <h1 id="pc-name"></h1>
+    <div id="pc-cat"></div>
+    <div id="pc-price"></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div id="pc-btns">
+    <button id="pc-cart-btn" class="pc-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1,1 4,1 4,16"/>
+        <polyline points="4,5 21,5 19,13 6,13"/>
+        <circle cx="9" cy="19" r="1.8" fill="white" stroke="none"/>
+        <circle cx="17" cy="19" r="1.8" fill="white" stroke="none"/>
+      </svg>
+      Add to Cart
+    </button>
+    <button id="pc-wa-btn" class="pc-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+      Ask on WhatsApp
+    </button>
+  </div>
+
+  <!-- SUGGESTIONS -->
+  <div id="pc-suggestions">
+    <h3>You may also like</h3>
+    <div id="pc-sug-grid"></div>
+  </div>
+
+  <script>
+  (async function productCompInit() {
+    const FALLBACK = '#e8dcd5';
+    const WA_NUMBER = ''; // add number here
+
+    // helpers
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('gk_cart') || '[]'); } catch { return []; }
+    }
+    function saveCart(c) { localStorage.setItem('gk_cart', JSON.stringify(c)); }
+    function getWishlist() {
+      try { return JSON.parse(localStorage.getItem('gk_wishlist') || '[]'); } catch { return []; }
+    }
+    function saveWishlist(w) { localStorage.setItem('gk_wishlist', JSON.stringify(w)); }
+
+    // load DB
+    let db = [];
+    try {
+      const res = await fetch('./database.json');
+      db = await res.json();
+    } catch(e) { console.error('DB load failed', e); return; }
+
+    // get product
+    const id = parseInt(new URLSearchParams(window.location.search).get('id'));
+    const p = db.find(x => x.id === id);
+    if (!p) { document.getElementById('pc-info').innerHTML = '<p style="padding:2rem;text-align:center;color:#aaa">Product not found.</p>'; return; }
+
+    // collect images
+    const imgs = [];
+    for (let i = 1; ; i++) {
+      const key = i === 1 ? 'url' : `url${i}`;
+      if (p[key]) imgs.push(p[key]); else break;
+    }
+    if (!imgs.length) imgs.push('');
+
+    // ── SLIDER ──
+    const slider = document.getElementById('pc-slider');
+    const dotsWrap = document.getElementById('pc-dots');
+    let cur = 0;
+
+    imgs.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'pc-slide';
+      slide.innerHTML = `<img src="${src}" alt="${p.name}" onerror="this.parentElement.style.background='${FALLBACK}';this.style.display='none'" loading="${i===0?'eager':'lazy'}">`;
+      slide.addEventListener('click', () => openLightbox(i));
+      slider.appendChild(slide);
+
+      const dot = document.createElement('div');
+      dot.className = 'pc-dot' + (i === 0 ? ' active' : '');
+      dotsWrap.appendChild(dot);
+    });
+
+    if (imgs.length < 2) dotsWrap.style.display = 'none';
+
+    function goTo(n) {
+      cur = Math.max(0, Math.min(n, imgs.length - 1));
+      slider.style.transform = `translateX(-${cur * 100}%)`;
+      dotsWrap.querySelectorAll('.pc-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    }
+
+    // touch swipe on slider
+    let ts = 0, tx = 0;
+    const sw = document.getElementById('pc-slider-wrap');
+    sw.addEventListener('touchstart', e => { ts = e.touches[0].clientX; }, {passive:true});
+    sw.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - ts;
+      if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+
+    // ── LIGHTBOX ──
+    const lb = document.getElementById('pc-lightbox');
+    const lbImg = document.getElementById('pc-lb-img');
+    let scale = 1, ox = 0, oy = 0, dragging = false, dragSx, dragSy, dragOx, dragOy;
+    let pinchDist = 0;
+
+    function openLightbox(i) {
+      lbImg.src = imgs[i];
+      scale = 1; ox = 0; oy = 0;
+      applyTransform();
+      lb.classList.add('open');
+    }
+
+    function applyTransform() {
+      lbImg.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`;
+    }
+
+    document.getElementById('pc-lb-close').addEventListener('click', () => lb.classList.remove('open'));
+
+    // pinch zoom
+    lb.addEventListener('touchstart', e => {
+      if (e.touches.length === 2) {
+        pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      } else if (e.touches.length === 1) {
+        dragging = true;
+        dragSx = e.touches[0].clientX; dragSy = e.touches[0].clientY;
+        dragOx = ox; dragOy = oy;
+      }
+    }, {passive:true});
+
+    lb.addEventListener('touchmove', e => {
+      e.preventDefault();
+      if (e.touches.length === 2) {
+        const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        scale = Math.min(5, Math.max(1, scale * d / pinchDist));
+        pinchDist = d;
+        applyTransform();
+      } else if (dragging && scale > 1) {
+        ox = dragOx + e.touches[0].clientX - dragSx;
+        oy = dragOy + e.touches[0].clientY - dragSy;
+        applyTransform();
+      }
+    }, {passive:false});
+
+    lb.addEventListener('touchend', () => {
+      dragging = false;
+      if (scale < 1.05) { scale = 1; ox = 0; oy = 0; applyTransform(); }
+    }, {passive:true});
+
+    // double tap to reset
+    let lastTap = 0;
+    lb.addEventListener('touchend', () => {
+      const now = Date.now();
+      if (now - lastTap < 300) { scale = 1; ox = 0; oy = 0; applyTransform(); }
+      lastTap = now;
+    }, {passive:true});
+
+    // ── INFO ──
+    document.getElementById('pc-name').textContent = p.name;
+    document.getElementById('pc-price').textContent = p.price;
+    const cats = (p.cat || '').split(' ').filter(c => c !== 'featured');
+    document.getElementById('pc-cat').textContent = cats.join(' · ');
+    if ((p.cat || '').includes('featured')) {
+      document.getElementById('pc-featured-tag').style.display = 'inline-block';
+    }
+
+    // ── CART BUTTON ──
+    const cartBtn = document.getElementById('pc-cart-btn');
+    function syncCartBtn() {
+      const inCart = getCart().some(x => x.id === p.id);
+      cartBtn.classList.toggle('added', inCart);
+      cartBtn.querySelector('span') ? null : null;
+      cartBtn.childNodes[cartBtn.childNodes.length - 1].textContent = inCart ? ' In Cart ✓' : ' Add to Cart';
+    }
+    syncCartBtn();
+    cartBtn.addEventListener('click', () => {
+      let cart = getCart();
+      if (cart.some(x => x.id === p.id)) {
+        window.location.href = 'cart.html';
+      } else {
+        cart.push({ id: p.id, name: p.name, price: p.price, url: imgs[0], qty: 1 });
+        saveCart(cart);
+        syncCartBtn();
+        window.dispatchEvent(new Event('storage'));
+      }
+    });
+
+    // ── WHATSAPP ──
+    document.getElementById('pc-wa-btn').addEventListener('click', () => {
+      const msg = encodeURIComponent(`Hi! I'm interested in *${p.name}* (ID: ${p.id}) priced at ${p.price}. Can you tell me more?`);
+      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+    });
+
+    // ── SUGGESTIONS ──
+    const tags = (p.cat || '').split(' ');
+    const suggestions = db
+      .filter(x => x.id !== p.id)
+      .map(x => {
+        const xt = (x.cat || '').split(' ');
+        const score = tags.filter(t => xt.includes(t)).length;
+        return { ...x, _score: score };
+      })
+      .filter(x => x._score > 0)
+      .sort((a, b) => b._score - a._score)
+      .slice(0, 10);
+
+    const grid = document.getElementById('pc-sug-grid');
+    if (!suggestions.length) {
+      document.getElementById('pc-suggestions').style.display = 'none';
+    } else {
+      suggestions.forEach(sp => {
+        const wished = getWishlist().includes(sp.id);
+        const card = document.createElement('div');
+        card.className = 'gk-card';
+        card.innerHTML = `
+          <div class="gk-card-img-wrap">
+            <img src="${sp.url||''}" alt="${sp.name}" onerror="this.style.display='none';this.parentElement.style.background='${FALLBACK}'" loading="lazy">
+            <button class="gk-wish${wished?' wished':''}" data-id="${sp.id}" aria-label="Wishlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF5400" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21C12 21 3 14.5 3 8.5A5 5 0 0 1 12 6.5 5 5 0 0 1 21 8.5C21 14.5 12 21 12 21Z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="gk-card-info">
+            <div class="gk-card-name">${sp.name}</div>
+            <div class="gk-card-price">${sp.price}</div>
+          </div>`;
+        card.addEventListener('click', e => {
+          if (!e.target.closest('.gk-wish')) window.location.href = `product.html?id=${sp.id}`;
+        });
+        card.querySelector('.gk-wish').addEventListener('click', function(e) {
+          e.stopPropagation();
+          let wl = getWishlist();
+          wl.includes(sp.id) ? wl = wl.filter(x => x !== sp.id) : wl.push(sp.id);
+          saveWishlist(wl);
+          this.classList.toggle('wished', wl.includes(sp.id));
+        });
+        grid.appendChild(card);
+      });
+    }
+
+  })();
+  </script>
+</div>
