@@ -4,8 +4,8 @@
   {
     "name": "Masrise Cotton",
     "id": 1,
-    "url": "https://picsum.photos/300/200?random=1",
-    "url2": "dataimg/01b.webp",
+    "url": "p/1.webp",
+    "url2": "p/1a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
@@ -13,8 +13,8 @@
   {
     "name": "Masrise Cotton",
     "id": 2,
-    "url": "https://picsum.photos/300/200?random=2",
-    "url2": "dataimg/02b.webp",
+    "url": "p/2.webp",
+    "url2": "p/2a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
@@ -22,8 +22,8 @@
   {
     "name": "Masrise Cotton",
     "id": 3,
-    "url": "https://picsum.photos/300/200?random=3",
-    "url2": "dataimg/03b.webp",
+    "url": "p/3.webp",
+    "url2": "p/3a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
@@ -31,8 +31,8 @@
   {
     "name": "Masrise Cotton",
     "id": 4,
-    "url": "https://picsum.photos/300/200?random=5",
-    "url2": "dataimg/04b.webp",
+    "url": "p/4.webp",
+    "url2": "p/4a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
@@ -40,49 +40,71 @@
   {
     "name": "Masrise Cotton",
     "id": 5,
-    "url": "https://picsum.photos/300/200?random=6",
+    "url": "p/5.webp",
+    "url2": "p/5a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
-    {
+  
+  {
     "name": "Masrise Cotton",
-    "id": 5,
-    "url": "https://picsum.photos/300/200?random=7",
+    "id": 6,
+    "url": "p/6.webp",
+    "url2": "p/6a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
-    {
+  
+  {
     "name": "Masrise Cotton",
-    "id": 5,
-    "url": "https://picsum.photos/300/200?random=8",
+    "id": 7,
+    "url": "p/7.webp",
+    "url2": "p/7a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
-    {
+  
+  {
     "name": "Masrise Cotton",
-    "id": 5,
-    "url": "https://picsum.photos/300/200?random=9",
+    "id": 8,
+    "url": "p/8.webp",
+    "url2": "p/8a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
-    {
+  
+  {
     "name": "Masrise Cotton",
-    "id": 5,
-    "url": "https://picsum.photos/300/200?random=10",
+    "id": 9,
+    "url": "p/9.webp",
+    "url2": "p/9a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
-    {
+  
+  {
     "name": "Masrise Cotton",
-    "id": 5,
-    "url": "https://picsum.photos/300/200?random=11",
+    "id": 10,
+    "url": "p/10.webp",
+    "url2": "p/10a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   },
-    {
+  
+  {
     "name": "Masrise Cotton",
-    "id": 5,
-    "url": "https://picsum.photos/300/200?random=12",
+    "id": 11,
+    "url": "p/11.webp",
+    "url2": "p/11a.webp",
+    "price": "3950₹",
+    "cat": "masrise cotton featured"
+  },
+  
+  {
+    "name": "Masrise Cotton",
+    "id": 12,
+    "url": "p/12.webp",
+    "url2": "p/12a.webp",
     "price": "3950₹",
     "cat": "masrise cotton featured"
   }
