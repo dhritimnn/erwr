@@ -83,6 +83,7 @@ async function searchResultInit() {
           src="${p.url || ''}"
           alt="${p.name}"
           onerror="this.style.display='none';this.parentElement.style.background='${FALLBACK_COLOR}'"
+          onclick="window.location.replace('/product.html?id=${p.id}')"
         />
         <button class="gk-wish${wished ? ' wished' : ''}" data-id="${p.id}" aria-label="Wishlist">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6435" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -90,7 +91,7 @@ async function searchResultInit() {
           </svg>
         </button>
       </div>
-      <div class="gk-card-info">
+      <div class="gk-card-info" onclick="window.location.replace('/product.html?id=${p.id}')">
         <div class="gk-card-name">${p.name}</div>
         <div class="gk-card-price">${p.price}</div>
       </div>
